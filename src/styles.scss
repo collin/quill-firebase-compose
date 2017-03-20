@@ -1,0 +1,19 @@
+@import "~https://cdn.quilljs.com/1.0.6/quill.snow.css";
+
+body * {
+  font-family: Helvetica Neue !important;
+}
+
+.quill-editor {
+	font-size: 1.2rem;
+	line-height: 1.3rem;
+  font-weight: 100;
+
+	strong {
+		font-weight: 400;
+	}
+
+	p:not(:first-child) {
+		margin-top: 1rem;
+	}
+}
