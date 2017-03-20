@@ -54,11 +54,11 @@ Quill.register(ItalicBlot);
 */
 
 function composeDeltas (deltas) {
-	let composed = new Delta();
-	for (var i = 0, len = deltas.length; i < len; i++) {
-		composed = composed.compose(deltas[i]);
-	}
-	return composed;
+  let composed = new Delta();
+  for (var i = 0, len = deltas.length; i < len; i++) {
+    composed = composed.compose(deltas[i]);
+  }
+  return composed;
 }
 
 export default React.createClass({
@@ -86,18 +86,18 @@ export default React.createClass({
       this.quill.on('text-change', this.handleTextChange);
 
       let ops = snapshot.val() || [];
-			this.latestOpId = ops.length - 1;
+      this.latestOpId = ops.length - 1;
 
-			this.firebaseRefs.ops.on('child_added', (snapshot) => {
-				let opId = parseInt(snapshot.key, 10);
-				console.log(this.latestOpId, opId);
-				if (opId > this.latestOpId) {
-					this.quill.updateContents(
-						snapshot.val(),
-						'silent'
-					);
-				}
-			});
+      this.firebaseRefs.ops.on('child_added', (snapshot) => {
+        let opId = parseInt(snapshot.key, 10);
+        console.log(this.latestOpId, opId);
+        if (opId > this.latestOpId) {
+          this.quill.updateContents(
+            snapshot.val(),
+            'silent'
+          );
+        }
+      });
 
       if (ops.length === 0) {
         return;
@@ -116,13 +116,13 @@ export default React.createClass({
     }
 
     let nextOpId;
-		if (this.state.ops) {
-			nextOpId = this.state.ops.length;
-		}
-		else {
-			nextOpId = 0;
-		}
-		this.latestOpId = nextOpId;
+    if (this.state.ops) {
+      nextOpId = this.state.ops.length;
+    }
+    else {
+      nextOpId = 0;
+    }
+    this.latestOpId = nextOpId;
 
     this.firebaseRefs.ops.child(nextOpId).transaction((currentValue) => {
       return delta;
@@ -140,9 +140,9 @@ export default React.createClass({
     return (
       <div>
         <div
-					className="quill-editor"
-					ref="editor"
-				/>
+          className="quill-editor"
+          ref="editor"
+        />
       </div>
     );
   },
